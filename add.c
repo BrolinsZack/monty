@@ -1,25 +1,37 @@
 #include "monty.h"
-
 /**
- * m_add - Adds the top two elements of the stack.
+ * f_add - Adds the top two elements of the stack.
  *
- * @stack: Double pointer tot he beginning of the stack.
+ * @head: Stack head.
  *
- * @line_number: Script line number.
+ * @counter: line_number.
  *
- * Return: void
- */
-void m_add(stack_t **stack, unsigned int line_number)
+ * Return: no return
+ *
+ *
+*/
+void f_add(stack_t **head, unsigned int counter)
 {
-	int n = 0;
+	stack_t *h;
+	int len = 0, aux;
 
-	if (var.stack_len < 2)
+	h = *head;
+	while (h)
 	{
-		/*dprintf(STDOUT_FILENO, "L%u: can't add, stack too short\n",line_number);*/
-		perror("cant add");
+		h = h->next;
+		len++;
+	}
+	if (len < 2)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	n += (*stack)->n;
-	m_pop(stack, line_number);
-	(*stack)->n += n;
+	h = *head;
+	aux = h->n + h->next->n;
+	h->next->n = aux;
+	*head = h->next;
+	free(h);
 }

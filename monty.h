@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #ifndef MONTY_H
 #define MONTY_H
 #include <unistd.h>
@@ -10,7 +11,7 @@
 /**
  * struct stack_s - Doubly linked list representation of a stack (or queue)
  *
- * @n: integer
+ * @n: integer<F5>
  *
  * @prev: Points to the previous element of the stack (or queue).
  *
@@ -90,6 +91,4 @@ void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
 void f_queue(stack_t **head, unsigned int counter);
 void f_stack(stack_t **head, unsigned int counter);
-
-#define _POSIX_C_SOURCE 200809L
 #endif
